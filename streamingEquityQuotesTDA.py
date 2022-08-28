@@ -9,7 +9,7 @@ from tda.auth import easy_client
 from tda.client import Client
 from tda.streaming import StreamClient
 import time as t
-import TDAsecrets
+import secretsTDA
 
 import asyncio
 import json
@@ -20,10 +20,10 @@ nest_asyncio.apply()
 
 #authentication for stream client
 client = easy_client(
-        api_key=TDAsecrets.api_key,
-        redirect_uri=TDAsecrets.redirect_uri,
-        token_path=TDAsecrets.token_path)
-stream_client = StreamClient(client, account_id=TDAsecrets.accountID)
+        api_key=secretsTDA.api_key,
+        redirect_uri=secretsTDA.redirect_uri,
+        token_path=secretsTDA.token_path)
+stream_client = StreamClient(client, account_id=secretsTDA.accountID)
 
 #creating queue class
 class Queue:

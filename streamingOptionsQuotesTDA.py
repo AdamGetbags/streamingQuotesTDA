@@ -11,7 +11,7 @@ from tda import auth, client
 from tda.client import Client
 from tda.streaming import StreamClient
 import time as t
-import TDAsecrets
+import secretsTDA
 
 import asyncio
 import json
@@ -22,13 +22,13 @@ nest_asyncio.apply()
 
 #authentication for HTTP client
 try:
-    c = auth.client_from_token_file(TDAsecrets.token_path, TDAsecrets.api_key)
+    c = auth.client_from_token_file(secretsTDA.token_path, secretsTDA.api_key)
 except FileNotFoundError:
     from selenium import webdriver
     with webdriver.Chrome() as driver:
         c = auth.client_from_login_flow(
-            driver, TDAsecrets.api_key, TDAsecrets.redirect_uri,
-            TDAsecrets.token_path)
+            driver, secretsTDA.api_key, secretsTDA.redirect_uri,
+            secretsTDA.token_path)
 
 #get call options
 r = c.get_option_chain(symbol = 'AAPL',
@@ -80,10 +80,10 @@ testQueue = Queue()
 
 #authentication for stream client
 client = easy_client(
-        api_key=TDAsecrets.api_key,
-        redirect_uri=TDAsecrets.redirect_uri,
-        token_path=TDAsecrets.token_path)
-stream_client = StreamClient(client, account_id=TDAsecrets.accountID)
+        api_key=secretsTDA.api_key,
+        redirect_uri=secretsTDA.redirect_uri,
+        token_path=secretsTDA.token_path)
+stream_client = StreamClient(client, account_id=secretsTDA.accountID)
 
 #to access streaming data
 async def read_stream():

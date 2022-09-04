@@ -1,1 +1,1 @@
-# scripts for streaming live equity, option, and futures quotes from the TD Ameritrade API.
+# scripts for streaming live equity, option, forex, futures and futures option quotes from the TD Ameritrade API.
